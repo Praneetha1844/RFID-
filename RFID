@@ -1,3 +1,6 @@
+
+
+   
 #include <Keypad.h>
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
@@ -45,6 +48,7 @@ void setup(){
 }
 
 void loop(){
+  lcd.print("CORE-X   ");
   char key = keypad.getKey();
 
   if (key){
@@ -58,32 +62,40 @@ void loop(){
         lcd.init();
         lcd.setCursor(0,0);
         lcd.clear();
-        lcd.print("DOREAMON");
-        delay(1000);
-        digitalWrite(A0,HIGH);
+        lcd.print("ACCESSED");
+        
+        delay(500);
+        lcd.clear();
+        digitalWrite(A1,HIGH);
         delay(10000);
-        digitalWrite(A0,LOW);
+        digitalWrite(A1,LOW);
         // DO YOUR WORK HERE
         
       }
       
       else {
         lcd.clear();
-        lcd.print("NOBITA");
-        digitalWrite(A1,HIGH);
-        delay(5000);
-        digitalWrite(A1,LOW);
+        lcd.print("DENIED");
+        delay(1000);
+        lcd.clear();
+        digitalWrite(A0,HIGH);
+        delay(1000);
+        digitalWrite(A0,LOW);
         
        
         
       }
 
       input_password = ""; // clear input password
-    } else {
+    } else 
+    {
       input_password += key; // append new character to input password string
     }
+    
   }
-   if ( ! mfrc522.PICC_IsNewCardPresent()) 
+  
+  
+   else if( ! mfrc522.PICC_IsNewCardPresent()) 
   {
     return;
   }
@@ -106,31 +118,55 @@ void loop(){
   Serial.println();
   Serial.print("Message : ");
   content.toUpperCase();
-  if (content.substring(1) == "AC DF 0E 22") //change here the UID of the card/cards that you want to give access
+  if (content.substring(1) == "57 11 48 3E")  //change here the UID of the card/cards that you want to give access
   {
+    lcd.clear();
     lcd.print("Accessed");
     Serial.println();
+    delay(500);
+        lcd.clear();
     
-     digitalWrite(A0,HIGH);
+     digitalWrite(A1,HIGH);
         delay(10000);
-        digitalWrite(A0,LOW);
+        digitalWrite(A1,LOW);
   }
-   if (content.substring(1) == "CA 2D 8E 19") //change here the UID of the card/cards that you want to give access
+  if(content.substring(1) == "7A 6A A9 15")
   {
-     
+    lcd.clear();
     lcd.print("Accessed");
     Serial.println();
-    digitalWrite(A0,HIGH);
+    delay(500);
+        lcd.clear();
+    
+     digitalWrite(A1,HIGH);
         delay(10000);
-        digitalWrite(A0,LOW);
-   
-  }
- 
- else   {
-    lcd.print(" Access denied");
-    digitalWrite(A1,HIGH);
-        delay(5000);
         digitalWrite(A1,LOW);
+    }
+    if( content.substring(1) == "04 2A 0A DA D6 60 80")
+    {
+      lcd.clear();
+    lcd.print("Accessed");
+    Serial.println();
+    delay(500);
+        lcd.clear();
+    
+     digitalWrite(A1,HIGH);
+        delay(10000);
+        digitalWrite(A1,LOW);
+    }
+    
+   
+ 
+else if (content.substring(1) != "57 11 48 3E" || content.substring(1) != "7A 6A A9 15" || content.substring(1) != "CA 2D 8E 19")
+{
+    lcd.clear();
+    lcd.print("denied");
+    delay(1000);
+        lcd.clear();
+    digitalWrite(A0,HIGH);
+        delay(1000);
+        
+        digitalWrite(A0,LOW);
         
     
   }
