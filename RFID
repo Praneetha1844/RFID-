@@ -133,7 +133,7 @@ void loop(){
   {
     lcd.clear();
     lcd.print("ACCESSED");
-    Serial.println();
+    
     delay(500);
         lcd.clear();
     
@@ -145,7 +145,7 @@ void loop(){
     {
       lcd.clear();
     lcd.print("ACCESSED");
-    Serial.println();
+    
     delay(500);
         lcd.clear();
     
@@ -160,7 +160,7 @@ else if (content.substring(1) != "57 11 48 3E" || content.substring(1) != "7A 6A
 {
     lcd.clear();
     lcd.print("DENIED");
-    delay(1000);
+    delay(500);
         lcd.clear();
     digitalWrite(A0,HIGH);
         delay(1000);
