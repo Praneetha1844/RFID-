@@ -53,8 +53,9 @@ void loop(){
 
   if (key){
    
-     lcd.print("X");
+     
     if(key == '*') {
+       lcd.print("X");
       input_password = ""; // clear input password
     } else if(key == '#') {
       if(password == input_password)
