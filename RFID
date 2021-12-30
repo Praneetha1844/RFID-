@@ -52,7 +52,7 @@ void loop(){
   char key = keypad.getKey();
 
   if (key){
-    Serial.println(key);
+   
      lcd.print("X");
     if(key == '*') {
       input_password = ""; // clear input password
@@ -118,11 +118,10 @@ void loop(){
   Serial.println();
   Serial.print("Message : ");
   content.toUpperCase();
-  if (content.substring(1) == "57 11 48 3E")  //change here the UID of the card/cards that you want to give access
+  if (content.substring(1) == "57 11 48 3E")  //card1 change here the UID of the card/cards that you want to give access
   {
     lcd.clear();
-    lcd.print("Accessed");
-    Serial.println();
+    lcd.print("ACCESSED");
     delay(500);
         lcd.clear();
     
@@ -130,10 +129,10 @@ void loop(){
         delay(10000);
         digitalWrite(A1,LOW);
   }
-  if(content.substring(1) == "7A 6A A9 15")
+  if(content.substring(1) == "7A 6A A9 15") //card2
   {
     lcd.clear();
-    lcd.print("Accessed");
+    lcd.print("ACCESSED");
     Serial.println();
     delay(500);
         lcd.clear();
@@ -145,7 +144,7 @@ void loop(){
     if( content.substring(1) == "04 2A 0A DA D6 60 80")
     {
       lcd.clear();
-    lcd.print("Accessed");
+    lcd.print("ACCESSED");
     Serial.println();
     delay(500);
         lcd.clear();
@@ -157,10 +156,10 @@ void loop(){
     
    
  
-else if (content.substring(1) != "57 11 48 3E" || content.substring(1) != "7A 6A A9 15" || content.substring(1) != "CA 2D 8E 19")
+else if (content.substring(1) != "57 11 48 3E" || content.substring(1) != "7A 6A A9 15" || content.substring(1) != "04 2A 0A DA D6 60 80")
 {
     lcd.clear();
-    lcd.print("denied");
+    lcd.print("DENIED");
     delay(1000);
         lcd.clear();
     digitalWrite(A0,HIGH);
