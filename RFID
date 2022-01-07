@@ -1,6 +1,9 @@
 
 
    
+
+
+   
 #include <Keypad.h>
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
@@ -142,6 +145,30 @@ void loop(){
         digitalWrite(A1,LOW);
     }
     if( content.substring(1) == "04 2A 0A DA D6 60 80")
+    {
+      lcd.clear();
+    lcd.print("ACCESSED");
+    
+    delay(500);
+        lcd.clear();
+    
+     digitalWrite(A1,HIGH);
+        delay(10000);
+        digitalWrite(A1,LOW);
+    }
+     if( content.substring(1) == "AC DF 0E 22") //keychain
+    {
+      lcd.clear();
+    lcd.print("ACCESSED");
+    
+    delay(500);
+        lcd.clear();
+    
+     digitalWrite(A1,HIGH);
+        delay(10000);
+        digitalWrite(A1,LOW);
+    }
+     if( content.substring(1) == "CA 2D 8E 19")//card 3
     {
       lcd.clear();
     lcd.print("ACCESSED");
